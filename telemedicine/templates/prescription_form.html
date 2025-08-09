@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}Write Prescription{% endblock %}
+
+{% block content %}
+<div class="container mx-auto mt-8">
+    <h1 class="text-3xl font-bold text-center mb-6">Write Prescription</h1>
+    <form method="POST" class="max-w-md mx-auto">
+        <div class="mb-4">
+            <label for="medication" class="block text-sm font-medium">Medication</label>
+            <input type="text" name="medication" id="medication" class="w-full p-2 border rounded" required>
+        </div>
+        <div class="mb-4">
+            <label for="dosage" class="block text-sm font-medium">Dosage</label>
+            <input type="text" name="dosage" id="dosage" class="w-full p-2 border rounded" required>
+        </div>
+        <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Submit Prescription</button>
+    </form>
+</div>
+{% endblock %}

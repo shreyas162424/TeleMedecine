@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+
+{% block title %}Patient Dashboard{% endblock %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-16">
+    <h1 class="text-4xl font-bold text-center text-blue-900 dark:text-blue-300 mb-12 animate__animated animate__fadeInDown">
+        Welcome, {{ current_user.username }}
+    </h1>
+
+    <div class="flex justify-center mb-8">
+        <a href="{{ url_for('book_appointment') }}" class="bg-blue-600 text-white px-6 py-3 rounded-full hover:bg-blue-700 transition-transform transform hover:scale-105">
+            Book Appointment
+        </a>
+    </div>
+
+    <!-- Appointments Section -->
+    <h2 class="text-3xl font-semibold mb-6 text-blue-900 dark:text-blue-300">Your Appointments</h2>
+
+    <!-- Search + Filter -->
+    <div class="table-controls flex flex-col md:flex-row gap-4 mb-6">
+        <input type="text" id="appointment-search" placeholder="Search appointments..." class="flex-1 p-3 border rounded-lg dark:bg-gray-700 dark:border-gray-600" aria-label="Search appointments">
+        <select id="appointment-filter" class="p-3 border rounded-lg dark:bg-gray-700 dark:border-gray-600" aria-label="Filter by status">
+            <option value="all">All Statuses</option>
+            <option value="Pending">Pending</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Completed">Completed</option>
+        </select>
+    </div>
+
+    <!-- Appointments Table -->
+    <div class="overflow-x-auto">
+        <table class="w-full border-collapse bg-white dark:bg-gray-800 rounded-lg shadow-lg">
+            <thead>
+                <tr class="bg-blue-600 text-white">
+                    <th class="border p-4">Doctor</th>
+                    <th class="border p-4">Date</th>
+                    <th class="border p-4">Status</th>
+                    <th class="border p-4">Video Call</th>
+                    <th class="border p-4">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for appointment in appointments %}
+                <tr class="hover:bg-gray-100 dark:hover:bg-gray-700">
+                    <td class="border p-4">
+                        {% for doctor in doctors %}
+                            {% if doctor.id == appointment.doctor_id %}
+                                {{ doctor.username }}
+                            {% endif %}
+                        {% endfor %}
+                    </td>
+                    <td class="border p-4">{{ appointment.date.strftime('%Y-%m-%d %H:%M') }}</td>
+                    <td class="border p-4">{{ appointment.status }}</td>
+                    <td class="border p-4">
+                        {% if appointment.status in ['Pending', 'In Progress'] %}
+                            <a href="{{ url_for('join_video', appointment_id=appointment.id) }}" class="text-blue-600 hover:underline" target="_blank">Join Video Call</a>
+                        {% else %}
+                            N/A
+                        {% endif %}
+                    </td>
+                    <td class="border p-4">
+                        {% if appointment.status == 'In Progress' %}
+                            <a href="{{ url_for('complete_appointment', appointment_id=appointment.id) }}" class="text-green-600 hover:underline">Mark Completed</a>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="5" class="border p-4 text-center text-gray-600 dark:text-gray-300">
+                        No appointments found.
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Prescriptions Section -->
+    <h2 class="text-3xl font-semibold mt-12 mb-6 text-blue-900 dark:text-blue-300">Your Prescriptions</h2>
+
+    <!-- Search + Filter -->
+    <div class="table-controls flex flex-col md:flex-row gap-4 mb-6">
+        <input type="text" id="prescription-search" placeholder="Search prescriptions..." class="flex-1 p-3 border rounded-lg dark:bg-gray-700 dark:border-gray-600" aria-label="Search prescriptions">
+        <select id="prescription-filter" class="p-3 border rounded-lg dark:bg-gray-700 dark:border-gray-600" aria-label="Filter by medication">
+            <option value="all">All Medications</option>
+        </select>
+    </div>
+
+    <!-- Prescriptions Table -->
+    <div class="overflow-x-auto">
+        <table class="w-full border-collapse bg-white dark:bg-gray-800 rounded-lg shadow-lg">
+            <thead>
+                <tr class="bg-blue-600 text-white">
+                    <th class="border p-4">Doctor</th>
+                    <th class="border p-4">Medication</th>
+                    <th class="border p-4">Dosage</th>
+                    <th class="border p-4">Date</th>
+                    <th class="border p-4">Download</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for prescription in prescriptions %}
+                <tr class="hover:bg-gray-100 dark:hover:bg-gray-700">
+                    <td class="border p-4">
+                        {% for doctor in doctors %}
+                            {% if doctor.id == prescription.doctor_id %}
+                                {{ doctor.username }}
+                            {% endif %}
+                        {% endfor %}
+                    </td>
+                    <td class="border p-4">{{ prescription.medication }}</td>
+                    <td class="border p-4">{{ prescription.dosage }}</td>
+                    <td class="border p-4">{{ prescription.date.strftime('%Y-%m-%d') }}</td>
+                    <td class="border p-4">
+                        {% if prescription.file_path %}
+                            <a href="{{ url_for('view_prescription', prescription_id=prescription.id) }}" class="text-blue-600 hover:underline">Download PDF</a>
+                        {% else %}
+                            No PDF
+                        {% endif %}
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="5" class="border p-4 text-center text-gray-600 dark:text-gray-300">
+                        No prescriptions found.
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</div>
+{% endblock %}

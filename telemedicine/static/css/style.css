@@ -1,0 +1,239 @@
+:root {
+    /* Updated Color Variables (Brighter, Medical-Themed) */
+    --primary: #0ea5e9; /* Brighter Medical Blue (Sky Blue) */
+    --primary-light: #38bdf8; /* Lighter Sky Blue */
+    --secondary: #34d399; /* Bright Mint Green for positive accents */
+    --light-bg: #f0f9ff; /* Light Baby Blue Background */
+    --dark-bg: #0f172a; /* Dark Blue for Dark Mode */
+    --light-text: #0f172a; /* Dark Navy Text */
+    --dark-text: #e0f2fe; /* Pale Blue for Dark Mode Text */
+    --accent: #e0f7fa; /* Soft Cyan Accent */
+    --danger: #ef4444; /* No change: Standard Red for errors */
+    --danger-light: #f87171; /* Light Error Red */
+  }
+  
+  /* Base Styles */
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+    background: var(--light-bg);
+    color: var(--light-text);
+    line-height: 1.6;
+    scroll-behavior: smooth;
+  }
+  
+  body.dark {
+    background: var(--dark-bg);
+    color: var(--dark-text);
+  }
+  
+  /* Header & Navbar */
+  header {
+    background: var(--light-bg);
+    box-shadow: 0 2px 8px rgba(14, 165, 233, 0.2); /* Subtle blue shadow */
+  }
+  
+  /* Hero Section */
+  .hero {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+  }
+  
+  /* Chat Container */
+  .chat-container {
+    background: var(--accent);
+  }
+  
+  /* Chat Header */
+  .chat-header {
+    background: var(--primary);
+  }
+  
+  /* Chat Messages */
+  .chat-messages div {
+    background: #ccfbf1; /* Even softer greenish-cyan background */
+    color: var(--primary);
+  }
+  
+  /* Buttons */
+  button[type="submit"], .send-message, #back-to-top {
+    background: var(--secondary); /* Use minty green for CTA buttons */
+    transition: background 0.3s, transform 0.2s;
+  }
+  
+  button[type="submit"]:hover, .send-message:hover, #back-to-top:hover {
+    background: var(--primary-light);
+    transform: scale(1.05);
+  }
+  
+  /* Table Styling */
+  table {
+    width: 100%;
+    background: var(--light-bg);
+  }
+  
+  thead {
+    background: var(--primary);
+    color: white;
+  }
+  
+  tbody tr:nth-child(even) {
+    background-color: #e0f2fe; /* Light blue rows */
+  }
+  
+  /* Footer */
+  footer {
+    background: var(--primary);
+    color: white;
+  }
+  
+  /* Form Inputs */
+  input, select, textarea {
+    border: 1px solid var(--primary-light);
+    border-radius: 8px;
+    padding: 0.6rem;
+  }
+  
+  input:focus, select:focus, textarea:focus {
+    border-color: var(--secondary);
+  }
+  
+  /* Back-to-top Button */
+  #back-to-top {
+    background: var(--secondary);
+  }
+  
+  /* Extra Smooth Animation */
+  html {
+    scroll-behavior: smooth;
+  }
+  /* OTP Verification Section */
+section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 90vh;
+  background: var(--light-bg);
+  padding: 2rem;
+}
+
+/* Section Heading */
+section h2 {
+  color: var(--primary);
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+/* Section Subtext */
+section p {
+  color: var(--primary-light);
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+/* Form Styling */
+form {
+  background: var(--accent);
+  padding: 3rem 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 8px 16px rgba(14, 165, 233, 0.15);
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* OTP Input Field */
+form input[type="text"] {
+  padding: 0.75rem 1rem;
+  border: 2px solid var(--primary-light);
+  border-radius: 0.75rem;
+  font-size: 1.1rem;
+  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+form input[type="text"]:focus {
+  border-color: var(--secondary);
+  box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.2);
+}
+
+/* Submit Button */
+form button[type="submit"] {
+  background: var(--primary);
+  color: white;
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+
+form button[type="submit"]:hover {
+  background: var(--primary-light);
+  transform: scale(1.05);
+}
+
+/* Error Message */
+.error {
+  color: var(--danger);
+  font-size: 0.9rem;
+  margin-top: -1rem;
+  text-align: center;
+}
+
+/* Animations inside form */
+form input, form button {
+  animation-duration: 1s;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  form {
+    padding: 2rem 1rem;
+  }
+}
+/* Navbar */
+header {
+    background: linear-gradient(90deg, #E0F2FE 0%, #BAE6FD 100%);
+    box-shadow: 0 2px 8px rgba(0, 112, 243, 0.1);
+    padding: 1rem 2rem;
+  }
+  
+  /* Logo and Navigation Links */
+  .nav-logo, nav ul li a {
+    color: var(--primary);
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: color 0.3s ease, transform 0.3s ease;
+  }
+  
+  /* On Hover */
+  nav ul li a:hover {
+    color: var(--primary-light);
+    transform: scale(1.05);
+  }
+  
+  /* Active Link Styling (Optional for Current Page) */
+  nav ul li a.active {
+    color: var(--secondary);
+    border-bottom: 2px solid var(--secondary);
+  }
+  
+  /* Dark Mode Navbar */
+  body.dark header {
+    background: var(--dark-bg);
+  }
+  
+  /* Responsive Nav */
+  @media (max-width: 768px) {
+    nav ul {
+      flex-direction: column;
+      background: #E0F2FE;
+      padding: 1rem;
+      border-radius: 0.5rem;
+    }
+  }
+  

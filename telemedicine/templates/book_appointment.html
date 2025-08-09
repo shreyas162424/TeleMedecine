@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="container mx-auto px-4 py-16">
+  <h2 class="text-4xl font-bold mb-6 text-center text-blue-900 dark:text-blue-300 animate__animated animate__fadeInDown">
+    Book Appointment
+  </h2>
+
+  <form method="POST" action="{{ url_for('book_appointment') }}" class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg max-w-md mx-auto animate__animated animate__zoomIn">
+    <input type="hidden" name="patient_id" value="{{ current_user.id }}">
+
+    <!-- Select Specialization -->
+    <select id="specialty" name="specialty" class="w-full p-3 border rounded-lg mb-6 dark:bg-gray-700 dark:border-gray-600 animate__animated animate__fadeIn" onchange="filterDoctors()" aria-label="Select specialty">
+      <option value="">-- Select Specialty --</option>
+      {% for specialty in specialties %}
+        <option value="{{ specialty }}">{{ specialty|capitalize }}</option>
+      {% endfor %}
+    </select>
+
+    <!-- Select Doctor -->
+    <select id="doctor_id" name="doctor_id" required class="w-full p-3 border rounded-lg mb-6 dark:bg-gray-700 dark:border-gray-600 animate__animated animate__fadeIn" aria-label="Select doctor">
+      <option value="">-- Select Doctor --</option>
+      {% for doctor in doctors %}
+        <option value="{{ doctor.id }}" data-specialty="{{ doctor.specialty }}">{{ doctor.username }} ({{ doctor.specialty|capitalize }})</option>
+      {% endfor %}
+    </select>
+
+    <!-- Date and Time -->
+    <input type="datetime-local" name="date" required class="w-full p-3 border rounded-lg mb-6 dark:bg-gray-700 dark:border-gray-600 animate__animated animate__fadeIn" aria-label="Select appointment date and time">
+
+    <button type="submit" class="w-full bg-blue-600 text-white p-3 rounded-lg hover:bg-blue-700 transition-transform transform hover:scale-105 animate__animated animate__pulse animate__infinite">
+      Book Appointment
+    </button>
+  </form>
+</section>
+
+<!-- JavaScript to filter doctors dynamically -->
+<script>
+function filterDoctors() {
+    var specialtySelect = document.getElementById('specialty');
+    var doctorSelect = document.getElementById('doctor_id');
+    var selectedSpecialty = specialtySelect.value;
+
+    for (var i = 0; i < doctorSelect.options.length; i++) {
+        var option = doctorSelect.options[i];
+        var doctorSpecialty = option.getAttribute('data-specialty');
+        
+        if (selectedSpecialty === "" || doctorSpecialty === selectedSpecialty) {
+            option.style.display = 'block';
+        } else {
+            option.style.display = 'none';
+        }
+    }
+    
+    // Reset doctor selection when specialty changes
+    doctorSelect.value = "";
+}
+</script>
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block title %}Doctor Dashboard{% endblock %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-16">
+    <h1 class="text-4xl font-bold text-center text-blue-900 dark:text-blue-300 mb-12 animate__animated animate__fadeInDown">
+        Welcome, {{ current_user.username }}
+    </h1>
+
+    <h2 class="text-3xl font-semibold mb-6 text-blue-900 dark:text-blue-300">Your Appointments</h2>
+
+    <div class="overflow-x-auto">
+        <table class="w-full border-collapse bg-white dark:bg-gray-800 rounded-lg shadow-lg">
+            <thead>
+                <tr class="bg-blue-600 text-white">
+                    <th class="border p-4">Patient</th>
+                    <th class="border p-4">Date</th>
+                    <th class="border p-4">Status</th>
+                    <th class="border p-4">Video Call</th>
+                    <th class="border p-4">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for appointment in appointments %}
+                <tr class="hover:bg-gray-100 dark:hover:bg-gray-700">
+                    <td class="border p-4">
+                        {% for patient in patients %}
+                            {% if patient.id == appointment.patient_id %}
+                                {{ patient.username }}
+                            {% endif %}
+                        {% endfor %}
+                    </td>
+                    <td class="border p-4">{{ appointment.date.strftime('%Y-%m-%d %H:%M') }}</td>
+                    <td class="border p-4">{{ appointment.status }}</td>
+                    <td class="border p-4">
+                        {% if appointment.status in ['Pending', 'In Progress'] %}
+                            <a href="{{ url_for('join_video', appointment_id=appointment.id) }}" class="text-blue-600 hover:underline" target="_blank">Join Video Call</a>
+                        {% else %}
+                            N/A
+                        {% endif %}
+                    </td>
+                    <td class="border p-4 space-x-2">
+                        {% if appointment.status == 'In Progress' %}
+                            <a href="{{ url_for('complete_appointment', appointment_id=appointment.id) }}" class="text-green-600 hover:underline">
+                                Mark Completed
+                            </a>
+                        {% endif %}
+                        <a href="{{ url_for('write_prescription', appointment_id=appointment.id) }}" class="text-blue-600 hover:underline">
+                            Write Prescription
+                        </a>
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="5" class="border p-4 text-center text-gray-600 dark:text-gray-300">
+                        No appointments found.
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prescription PDF</title>
+    <style>
+        body {
+            font-family: 'Inter', Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #FFFFFF;
+            color: #1E40AF;
+        }
+        .container {
+            max-width: 700px;
+            margin: auto;
+            border: 1px solid #E5E7EB;
+            padding: 30px;
+            border-radius: 8px;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 40px;
+        }
+        .header img {
+            width: 80px;
+        }
+        .header h2 {
+            font-size: 1.8rem;
+            text-align: right;
+            margin: 0;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.2rem;
+        }
+        .details {
+            margin-top: 20px;
+            font-size: 1rem;
+            color: #374151;
+        }
+        .details p {
+            margin: 10px 0;
+        }
+        .signature {
+            margin-top: 60px;
+            text-align: right;
+        }
+        .signature p {
+            margin-bottom: 5px;
+        }
+        .footer {
+            margin-top: 50px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #9CA3AF;
+        }
+        @media print {
+            .container { border: none; margin: 0; padding: 10px; }
+            body { margin: 0; }
+        }
+    </style>
+    
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="MediCare Logo">
+            <h2>MediCare Global</h2>
+        </div>
+
+        <h1>Prescription</h1>
+
+        <div class="details">
+            <p><strong>Patient Name:</strong> {{ prescription.patient_name }}</p>
+            <p><strong>Doctor:</strong> Dr. {{ prescription.doctor_name }}</p>
+            <p><strong>Medication:</strong> {{ prescription.medication }}</p>
+            <p><strong>Dosage:</strong> {{ prescription.dosage }}</p>
+            <p><strong>Special Instructions:</strong> {{ prescription.instructions }}</p>
+            <p><strong>Prescription Validity:</strong> {{ prescription.validity_days }} days</p>
+            <p><strong>Date Issued:</strong> {{ prescription.date.strftime('%Y-%m-%d') }}</p>
+        </div>
+
+        <div class="signature">
+            <p>__________________________</p>
+            <p><strong>Doctor's Signature</strong></p>
+        </div>
+
+        <div class="footer">
+            Powered by MediCare Global | This is a digitally generated prescription.
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="container mx-auto px-4 py-16">
+    <h2 class="text-4xl font-bold text-center text-blue-900 dark:text-blue-300 mb-12 animate__animated animate__fadeInDown">
+        Join MediCare
+    </h2>
+
+    <form method="POST" action="/register" onsubmit="return validateRegister()" class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg max-w-md mx-auto animate__animated animate__zoomIn">
+
+        <!-- Username (Email) -->
+        <input type="text" id="username" name="username" placeholder="Email (e.g., user@gmail.com)" required class="w-full p-3 border rounded-lg mb-4 dark:bg-gray-700 dark:border-gray-600 animate__animated animate__fadeIn" aria-label="Email">
+        <div id="username-error" class="text-red-600 dark:text-red-400 text-sm mb-4 hidden"></div>
+
+        <!-- Password -->
+        <div class="relative">
+            <input type="password" id="password" name="password" placeholder="Password" required class="w-full p-3 border rounded-lg mb-4 dark:bg-gray-700 dark:border-gray-600 animate__animated animate__fadeIn" aria-label="Password">
+            <button type="button" class="toggle-password absolute right-3 top-3 text-gray-600 dark:text-gray-300" aria-label="Toggle password visibility">👁️</button>
+        </div>
+        <div id="password-error" class="text-red-600 dark:text-red-400 text-sm mb-4 hidden"></div>
+
+        <!-- Role Selection -->
+        <select name="role" required class="w-full p-3 border rounded-lg mb-4 dark:bg-gray-700 dark:border-gray-600 animate__animated animate__fadeIn" aria-label="Select role">
+            <option value="" disabled selected>Select Role</option>
+            <option value="patient">Patient</option>
+            <option value="doctor">Doctor</option>
+        </select>
+
+        <!-- Submit -->
+        <button type="submit" class="w-full bg-blue-600 text-white p-3 rounded-lg hover:bg-blue-700 transition-transform transform hover:scale-105 animate__animated animate__pulse animate__infinite">
+            Register
+        </button>
+    </form>
+
+    <p class="mt-8 text-center animate__animated animate__fadeInUp">
+        <a href="{{ url_for('login') }}" class="text-blue-600 dark:text-blue-400 hover:underline text-xl">
+            Already have an account? Login
+        </a>
+    </p>
+</section>
+{% endblock %}

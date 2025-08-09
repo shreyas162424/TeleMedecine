@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="container mx-auto px-4 py-16">
+    <h2 class="text-4xl font-bold text-center text-blue-900 dark:text-blue-300 mb-12 animate__animated animate__fadeInDown">Your Prescription</h2>
+    {% if prescription %}
+    <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg max-w-md mx-auto animate__animated animate__zoomIn">
+        <p class="mb-6 text-gray-600 dark:text-gray-300">{{ prescription.content }}</p>
+        <a href="{{ url_for('download_prescription', appointment_id=prescription.appointment_id) }}" class="inline-block bg-green-600 text-white px-6 py-3 rounded-full hover:bg-green-700 transition-transform transform hover:scale-105" aria-label="Download prescription PDF">Download PDF</a>
+    </div>
+    <p class="mt-8 text-center animate__animated animate__fadeInUp"><a href="{{ url_for('patient_dashboard') }}" class="text-blue-600 dark:text-blue-400 hover:underline">Back to Dashboard</a></p>
+    {% else %}
+    <p class="text-red-600 dark:text-red-400 text-center animate__animated animate__shakeX">No prescription available.</p>
+    <p class="mt-8 text-center animate__animated animate__fadeInUp"><a href="{{ url_for('patient_dashboard') }}" class="text-blue-600 dark:text-blue-400 hover:underline">Back to Dashboard</a></p>
+    {% endif %}
+</section>
+{% endblock %}

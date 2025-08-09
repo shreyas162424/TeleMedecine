@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="animate__animated animate__bounceIn">
+    <h2 class="text-4xl font-bold mb-6 text-center text-blue-900">Verify Your Email</h2>
+    <p class="text-center text-lg mb-6">Enter the 6-digit OTP sent to your email.</p>
+    <form method="POST" action="{{ url_for('verify', user_id=user_id) }}" onsubmit="return validateOTP()" class="bg-white p-12 rounded-2xl shadow-lg">
+        <input type="text" id="otp" name="otp" placeholder="Enter OTP" required class="animate__animated animate__fadeIn">
+        <div id="otp-error" class="error"></div>
+        <button type="submit" class="w-full animate__animated animate__pulse animate__infinite">Verify</button>
+    </form>
+</section>
+{% endblock %}

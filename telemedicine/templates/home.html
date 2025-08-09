@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+
+{% block particles %}{% endblock %}
+
+{% block content %}
+
+<!-- Hero Section -->
+<section class="relative bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-24 overflow-hidden hero">
+    <div class="container mx-auto px-4 text-center">
+        <h1 class="text-5xl md:text-6xl font-bold mb-6 animate__animated animate__fadeInDown">
+            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" class="inline-block mr-3" viewBox="0 0 24 24">
+                <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm2 11h-2v2a1 1 0 0 1-2 0v-2H8a1 1 0 0 1 0-2h2V9a1 1 0 0 1 2 0v2h2a1 1 0 0 1 0 2z"/>
+            </svg>
+            MediCare: Your Health, Our Mission
+        </h1>
+        <p class="text-xl md:text-2xl max-w-3xl mx-auto mb-8 animate__animated animate__fadeInUp animate__delay-1s">
+            Experience world-class healthcare with secure consultations, AI chat, and instant prescriptions.
+        </p>
+        <a href="{{ url_for('register') }}" class="inline-block bg-yellow-400 text-blue-900 px-8 py-4 rounded-full font-semibold hover:bg-yellow-300 transition-transform transform hover:scale-105 animate__animated animate__pulse animate__infinite">
+            Join Now
+        </a>
+    </div>
+</section>
+
+<!-- Services Section -->
+<section class="container mx-auto px-4 py-16 animate__animated animate__fadeInUp">
+    <h2 class="text-4xl font-bold mb-12 text-center text-blue-900 dark:text-blue-300">Our Premium Services</h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Card 1 -->
+        <div class="card bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1 animate__animated animate__zoomIn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="#1976d2" viewBox="0 0 24 24">
+                <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zM7 12h10v2H7v-2z"/>
+            </svg>
+            <h3 class="text-2xl font-semibold mt-4 mb-2 text-blue-900 dark:text-blue-300">Video Consultations</h3>
+            <p class="text-gray-600 dark:text-gray-300">Consult top doctors across specialties without leaving your home.</p>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="card bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1 animate__animated animate__zoomIn animate__delay-1s">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="#1976d2" viewBox="0 0 24 24">
+                <path d="M5 3a2 2 0 0 0-2 2v3h18V5a2 2 0 0 0-2-2H5zM3 9v10a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V9H3z"/>
+            </svg>
+            <h3 class="text-2xl font-semibold mt-4 mb-2 text-blue-900 dark:text-blue-300">Prescription Management</h3>
+            <p class="text-gray-600 dark:text-gray-300">Instant digital prescriptions sent securely after every consultation.</p>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="card bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1 animate__animated animate__zoomIn animate__delay-2s">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="#1976d2" viewBox="0 0 24 24">
+                <path d="M12 22s8-4.5 8-10V5a8 8 0 0 0-16 0v7c0 5.5 8 10 8 10z"/>
+            </svg>
+            <h3 class="text-2xl font-semibold mt-4 mb-2 text-blue-900 dark:text-blue-300">AI Symptom Checker</h3>
+            <p class="text-gray-600 dark:text-gray-300">Pre-diagnose your symptoms using our intelligent AI chatbot.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="bg-gray-100 dark:bg-gray-800 py-16 animate__animated animate__fadeIn">
+    <div class="container mx-auto px-4">
+        <h2 class="text-4xl font-bold mb-12 text-center text-blue-900 dark:text-blue-300">What Our Patients Say</h2>
+        
+        <div class="carousel relative">
+            <div class="carousel-item active text-center">
+                <p class="text-lg italic max-w-2xl mx-auto text-gray-600 dark:text-gray-300">
+                    "I booked a specialist in minutes, had my consultation from home, and got my medicines delivered!"
+                </p>
+                <p class="mt-4 font-semibold text-blue-900 dark:text-blue-300">- Asha Patel, New Delhi</p>
+            </div>
+            <div class="carousel-item text-center hidden">
+                <p class="text-lg italic max-w-2xl mx-auto text-gray-600 dark:text-gray-300">
+                    "The MediCare platform made seeing a doctor easier than ordering pizza. Truly incredible."
+                </p>
+                <p class="mt-4 font-semibold text-blue-900 dark:text-blue-300">- John Miller, London</p>
+            </div>
+            <div class="carousel-nav flex justify-center mt-8 space-x-4">
+                <button class="prev bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700" aria-label="Previous testimonial">←</button>
+                <button class="next bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700" aria-label="Next testimonial">→</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Why MediCare Section -->
+<section class="container mx-auto px-4 py-16 animate__animated animate__fadeInUp">
+    <h2 class="text-4xl font-bold mb-12 text-center text-blue-900 dark:text-blue-300">Why Choose MediCare?</h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div class="card bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">
+            <h3 class="text-2xl font-semibold mb-2 text-blue-900 dark:text-blue-300">24/7 Access</h3>
+            <p class="text-gray-600 dark:text-gray-300">Consult anytime with our network of global specialists.</p>
+        </div>
+
+        <div class="card bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">
+            <h3 class="text-2xl font-semibold mb-2 text-blue-900 dark:text-blue-300">High Security</h3>
+            <p class="text-gray-600 dark:text-gray-300">Your health data is protected with end-to-end encryption.</p>
+        </div>
+
+        <div class="card bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">
+            <h3 class="text-2xl font-semibold mb-2 text-blue-900 dark:text-blue-300">Expert Care</h3>
+            <p class="text-gray-600 dark:text-gray-300">Doctors from top hospitals ready to support you.</p>
+        </div>
+
+        <div class="card bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">
+            <h3 class="text-2xl font-semibold mb-2 text-blue-900 dark:text-blue-300">Intuitive Platform</h3>
+            <p class="text-gray-600 dark:text-gray-300">Simple tools to manage your healthcare journey easily.</p>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
