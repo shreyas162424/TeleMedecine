@@ -19,8 +19,7 @@ This project integrates **Flask (Python)** for backend services, **HTML/CSS/Java
 
 ## 🖼 Screenshots
 
-> Add screenshots of your UI here  
-> *(Replace `assets/screenshot1.png` with your actual image paths)*
+
 
 ![Home Page](https://github.com/shreyas162424/TeleMedecine/blob/main/Telemedicine%20Consultation%20Webpage%20Design.png)
 
